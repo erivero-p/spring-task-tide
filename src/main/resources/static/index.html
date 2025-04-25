@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Task Board</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <div class="container">
+    <header class="app-header">
+      <h1>Task Board</h1>
+      <button id="new-task-btn" class="btn primary-btn">
+        <i class="fas fa-plus"></i> New Task
+      </button>
+    </header>
+
+    <div id="error-container" class="error-container hidden"></div>
+    
+    <div id="date-board" class="date-board hidden">
+      <h2 class="section-header">Upcoming Tasks</h2>
+      <div class="date-columns">
+        <div class="date-column">
+          <h2 class="column-header">Today</h2>
+          <div id="today" class="task-list date-task-list" data-date="today"></div>
+        </div>
+        
+        <div class="date-column">
+          <h2 class="column-header">Tomorrow</h2>
+          <div id="tomorrow" class="task-list date-task-list" data-date="tomorrow"></div>
+        </div>
+      </div>
+    </div>
+
+    <div id="loading" class="loading-container">
+      <div class="loading-spinner"></div>
+    </div>
+	<h2 class="section-header">All Tasks</h2>
+    <main id="board" class="board hidden">
+      <div class="column">
+        <h2 class="column-header unstarted">Not Started</h2>
+        <div id="unstarted" class="task-list" data-status="UNSTARTED"></div>
+      </div>
+      
+      <div class="column">
+        <h2 class="column-header in-progress">In Progress</h2>
+        <div id="in-progress" class="task-list" data-status="IN_PROGRESS"></div>
+      </div>
+      
+      <div class="column">
+        <h2 class="column-header finished">Finished</h2>
+        <div id="finished" class="task-list" data-status="FINISHED"></div>
+      </div>
+    </main>
+  </div>
+
+  <!-- Create Task Modal -->
+  <div id="create-task-modal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>Create New Task</h2>
+        <button class="close-btn">&times;</button>
+      </div>
+      <form id="create-task-form">
+        <div class="form-group">
+          <label for="title">Title</label>
+          <input type="text" id="title" name="title" required>
+        </div>
+        <div class="form-group">
+          <label for="description">Description</label>
+          <textarea id="description" name="description" rows="3"></textarea>
+        </div>
+        <div class="form-group">
+          <label for="due-date">Due Date</label>
+          <input type="date" id="due-date" name="due-date">
+        </div>
+        <div class="form-group">
+          <label for="status">Status</label>
+          <select id="status" name="status">
+            <option value="UNSTARTED">Not Started</option>
+            <option value="IN_PROGRESS">In Progress</option>
+            <option value="FINISHED">Completed</option>
+          </select>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn secondary-btn cancel-btn">Cancel</button>
+          <button type="submit" class="btn primary-btn">Create Task</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Edit Task Modal -->
+  <div id="edit-task-modal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>Edit Task</h2>
+        <button class="close-btn">&times;</button>
+      </div>
+      <form id="edit-task-form">
+        <input type="hidden" id="edit-task-id">
+        <div class="form-group">
+          <label for="edit-title">Title</label>
+          <input type="text" id="edit-title" name="title" required>
+        </div>
+        <div class="form-group">
+          <label for="edit-description">Description</label>
+          <textarea id="edit-description" name="description" rows="3"></textarea>
+        </div>
+        <div class="form-group">
+          <label for="edit-due-date">Due Date</label>
+          <input type="date" id="edit-due-date" name="due-date">
+        </div>
+        <div class="form-group">
+          <label for="edit-status">Status</label>
+          <select id="edit-status" name="status">
+            <option value="UNSTARTED">Not Started</option>
+            <option value="IN_PROGRESS">In Progress</option>
+            <option value="FINISHED">Completed</option>
+          </select>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn secondary-btn cancel-btn">Cancel</button>
+          <button type="submit" class="btn primary-btn">Save Changes</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Task Context Menu -->
+  <div id="context-menu" class="context-menu">
+    <ul>
+      <li id="edit-task"><i class="fas fa-edit"></i> Edit</li>
+      <li id="delete-task" class="delete-option"><i class="fas fa-trash"></i> Delete</li>
+    </ul>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js"></script>
+  <script type="module" src="app.js"></script>
+</body>
+</html>

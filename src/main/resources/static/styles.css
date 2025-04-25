@@ -1,0 +1,496 @@
+:root {
+	/* Dark Theme Colors */
+	--primary-color: #3b82f6;
+	--primary-hover: #2563eb;
+	--text-color: #e2e8f0;
+	--text-light: #94a3b8;
+	--background: #111827;
+	--background-alt: #1f2937;
+	--border-color: #374151;
+	--shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+	--danger: #ef4444;
+	--danger-hover: #dc2626;
+	--success: #10b981;
+	--column-width: 320px;
+  
+	/* Task Status Colors */
+	--unstarted-color: #3b82f6; /* Blue */
+	--in-progress-color: #f59e0b; /* Amber */
+	--finished-color: #10b981; /* Green */
+  
+	/* Card Background */
+	--card-background: #1e293b;
+	--card-hover: #263449;
+  
+	/* Form Elements */
+	--input-background: #111827;
+	--input-border: #374151;
+	--input-text: #e2e8f0;
+  }
+  
+  * {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+  }
+  
+  body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans",
+	  "Helvetica Neue", sans-serif;
+	line-height: 1.6;
+	color: var(--text-color);
+	background-color: var(--background);
+  }
+  
+  .container {
+	max-width: 1200px;
+	margin: 0 auto;
+	padding: 20px;
+  }
+  
+  .app-header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 30px;
+  }
+  
+  .btn {
+	padding: 8px 16px;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+	font-size: 14px;
+	font-weight: 500;
+	display: inline-flex;
+	align-items: center;
+	gap: 8px;
+	transition: background-color 0.2s, transform 0.1s;
+  }
+  
+  .btn:active {
+	transform: translateY(1px);
+  }
+  
+  .primary-btn {
+	background-color: var(--primary-color);
+	color: white;
+  }
+  
+  .primary-btn:hover {
+	background-color: var(--primary-hover);
+  }
+  
+  .secondary-btn {
+	background-color: transparent;
+	border: 1px solid var(--border-color);
+	color: var(--text-color);
+  }
+  
+  .secondary-btn:hover {
+	background-color: var(--background-alt);
+  }
+  
+  .board {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(var(--column-width), 1fr));
+	gap: 20px;
+  }
+  
+  /* Date Board Styles */
+  .date-board {
+	margin-bottom: 30px;
+  }
+  
+  .section-header {
+	font-size: 18px;
+	font-weight: 600;
+	margin-bottom: 16px;
+	color: var(--text-color);
+  }
+  
+  .date-columns {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(var(--column-width), 1fr));
+	gap: 20px;
+  }
+  
+  .date-column {
+	background-color: var(--background-alt);
+	border-radius: 8px;
+	padding: 16px;
+	min-height: 200px;
+	display: flex;
+	flex-direction: column;
+  }
+  
+  .date-task-list {
+	min-height: 100px;
+  }
+  
+  .column {
+	background-color: var(--background-alt);
+	border-radius: 8px;
+	padding: 16px;
+	min-height: 500px;
+	display: flex;
+	flex-direction: column;
+  }
+  
+  .column-header {
+	font-size: 16px;
+	font-weight: 600;
+	margin-bottom: 16px;
+	text-align: center;
+	color: var(--text-color);
+  }
+  
+  .task-list {
+	flex-grow: 1;
+	min-height: 200px;
+  }
+  
+  .task-card {
+	background-color: var(--card-background);
+	border-radius: 6px;
+	padding: 12px;
+	margin-bottom: 12px;
+	box-shadow: var(--shadow);
+	cursor: move;
+	position: relative;
+	border: 1px solid var(--border-color);
+	transition: box-shadow 0.2s, transform 0.1s, height 0.3s ease;
+  }
+  
+  /* Add these new classes for different task card styles */
+  .task-card.date-view {
+	/* Date board tasks show all info by default */
+  }
+  
+  .task-card.date-view .task-description {
+	max-height: 200px;
+	opacity: 1;
+	margin-top: 8px;
+  }
+  
+  .task-card.status-view {
+	/* Status board tasks are compact by default */
+  }
+  
+  .task-card.status-view .task-description,
+  .task-card.status-view .task-due-date {
+	max-height: 0;
+	overflow: hidden;
+	opacity: 0;
+	margin-top: 0;
+	transition: max-height 0.3s ease, opacity 0.3s ease, margin-top 0.3s ease;
+  }
+  
+  .task-card.status-view:hover .task-description,
+  .task-card.status-view:hover .task-due-date {
+	max-height: 200px;
+	opacity: 1;
+	margin-top: 8px;
+  }
+  
+  /* Task status colors */
+  .task-card.status-UNSTARTED {
+	border-left: 4px solid var(--unstarted-color);
+  }
+  
+  .task-card.status-IN_PROGRESS {
+	border-left: 4px solid var(--in-progress-color);
+  }
+  
+  .task-card.status-FINISHED {
+	border-left: 4px solid var(--finished-color);
+  }
+  
+  .task-due-date {
+	font-size: 12px;
+	color: var(--text-light);
+	margin-top: 8px;
+	display: flex;
+	align-items: center;
+	gap: 4px;
+  }
+  
+  .task-due-date.due-today {
+	color: var(--primary-color);
+	font-weight: 500;
+  }
+  
+  .task-due-date.overdue {
+	color: var(--danger);
+	font-weight: 500;
+  }
+  
+  .task-card:hover {
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+	background-color: var(--card-hover);
+  }
+  
+  .task-card.dragging {
+	opacity: 0.5;
+  }
+  
+  .task-header {
+	display: flex;
+	justify-content: space-between;
+	align-items: flex-start;
+	margin-bottom: 8px;
+  }
+  
+  .task-title {
+	font-weight: 500;
+	font-size: 14px;
+	word-break: break-word;
+  }
+  
+  .task-menu {
+	cursor: pointer;
+	color: var(--text-light);
+	font-size: 16px;
+	padding: 2px;
+  }
+  
+  .task-menu:hover {
+	color: var(--text-color);
+  }
+  
+  /* Update the existing task-description styles to be more generic */
+  .task-description {
+	font-size: 13px;
+	color: var(--text-light);
+	word-break: break-word;
+	transition: max-height 0.3s ease, opacity 0.3s ease, margin-top 0.3s ease;
+  }
+  
+  /* Remove the hover styles from the general task-card class since we're now using specific view classes */
+  .task-card:hover .task-description {
+	/* Remove these styles as they're now in the specific view classes */
+  }
+  
+  /* Modal Styles */
+  .modal {
+	display: none;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.7);
+	z-index: 1000;
+	overflow: auto;
+  }
+  
+  .modal-content {
+	background-color: var(--background-alt);
+	margin: 10% auto;
+	padding: 20px;
+	border-radius: 8px;
+	width: 90%;
+	max-width: 500px;
+	box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+	animation: modalFadeIn 0.3s;
+  }
+  
+  @keyframes modalFadeIn {
+	from {
+	  opacity: 0;
+	  transform: translateY(-20px);
+	}
+	to {
+	  opacity: 1;
+	  transform: translateY(0);
+	}
+  }
+  
+  .modal-header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 20px;
+  }
+  
+  .close-btn {
+	background: none;
+	border: none;
+	font-size: 24px;
+	cursor: pointer;
+	color: var(--text-light);
+  }
+  
+  .close-btn:hover {
+	color: var(--text-color);
+  }
+  
+  .form-group {
+	margin-bottom: 16px;
+  }
+  
+  label {
+	display: block;
+	margin-bottom: 6px;
+	font-weight: 500;
+	font-size: 14px;
+	color: var(--text-color);
+  }
+  
+  input,
+  textarea,
+  select {
+	width: 100%;
+	padding: 8px 12px;
+	border: 1px solid var(--input-border);
+	border-radius: 4px;
+	font-size: 14px;
+	font-family: inherit;
+	background-color: var(--input-background);
+	color: var(--input-text);
+  }
+  
+  input:focus,
+  textarea:focus,
+  select:focus {
+	outline: none;
+	border-color: var(--primary-color);
+  }
+  
+  .modal-footer {
+	display: flex;
+	justify-content: flex-end;
+	gap: 12px;
+	margin-top: 20px;
+  }
+  
+  /* Context Menu */
+  .context-menu {
+	display: none;
+	position: absolute;
+	background-color: var(--background-alt);
+	border: 1px solid var(--border-color);
+	border-radius: 4px;
+	box-shadow: var(--shadow);
+	z-index: 100;
+	min-width: 150px;
+  }
+  
+  .context-menu ul {
+	list-style: none;
+  }
+  
+  .context-menu li {
+	padding: 8px 12px;
+	cursor: pointer;
+	font-size: 14px;
+	display: flex;
+	align-items: center;
+	gap: 8px;
+  }
+  
+  .context-menu li:hover {
+	background-color: var(--card-background);
+  }
+  
+  .context-menu .delete-option {
+	color: var(--danger);
+  }
+  
+  .context-menu .delete-option:hover {
+	background-color: rgba(239, 68, 68, 0.1);
+  }
+  
+  /* Loading Spinner */
+  .loading-container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 200px;
+  }
+  
+  .loading-spinner {
+	border: 4px solid rgba(255, 255, 255, 0.1);
+	border-radius: 50%;
+	border-top: 4px solid var(--primary-color);
+	width: 40px;
+	height: 40px;
+	animation: spin 1s linear infinite;
+  }
+  
+  @keyframes spin {
+	0% {
+	  transform: rotate(0deg);
+	}
+	100% {
+	  transform: rotate(360deg);
+	}
+  }
+  
+  /* Error Container */
+  .error-container {
+	background-color: rgba(239, 68, 68, 0.1);
+	border: 1px solid var(--danger);
+	color: var(--danger);
+	padding: 12px 16px;
+	border-radius: 4px;
+	margin-bottom: 20px;
+  }
+  
+  .hidden {
+	display: none;
+  }
+  
+  /* Responsive Styles */
+  @media (max-width: 768px) {
+	.board {
+	  grid-template-columns: 1fr;
+	}
+  
+	.modal-content {
+	  margin: 20% auto;
+	  width: 95%;
+	}
+  }
+  
+  /* Drag and Drop Visual Cues */
+  .task-list.sortable-drag {
+	background-color: rgba(59, 130, 246, 0.05);
+  }
+  
+  .task-list.sortable-ghost {
+	background-color: rgba(59, 130, 246, 0.1);
+	border-radius: 8px;
+  }
+  
+  .task-card.sortable-ghost {
+	background-color: rgba(59, 130, 246, 0.1);
+	border: 2px dashed var(--primary-color);
+	box-shadow: none;
+  }
+  
+  .task-card.sortable-chosen {
+	box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+  }
+  
+  /* Empty Column State */
+  .empty-column {
+	text-align: center;
+	color: var(--text-light);
+	font-size: 14px;
+	padding: 20px 0;
+  }
+  
+  /* Status indicators in column headers */
+  .column-header.unstarted {
+	color: var(--unstarted-color);
+  }
+  
+  .column-header.in-progress {
+	color: var(--in-progress-color);
+  }
+  
+  .column-header.finished {
+	color: var(--finished-color);
+  }
+  
