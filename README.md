@@ -12,7 +12,7 @@ Una vez levantada, podéis ver la documentación de la api, en este enlace: http
 
 Si queréis realizar vosotros mismos esta práctica, os dejo el paso a paso que yo seguí. Si usáis este ejercicio para aprender Spring Boot, podéis omitir la parte de frontend usando la mía, ubicada en `src/main/resources/static`.
 
-# 0 - primeros pasos
+# 0 - Primeros pasos
 
 ### Configuración de la database
 
