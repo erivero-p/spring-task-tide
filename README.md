@@ -270,7 +270,7 @@ He actualizado el endpoint `createTask` para establecer valores por defecto (`UN
 
 # 5 - Añadiendo frontend a la app
 
-Los proyectos de Spring Boot normalmente ya están preparados para servir archivos estáticos. Dentro del proyect tree que se creó al inicializarlo, tenemos la ruta`src/main/resources/static` en la que podremos crear nuestro index.html
+Los proyectos de Spring Boot normalmente ya están preparados para servir archivos estáticos. Dentro del project tree que se creó al inicializarlo, tenemos la ruta`src/main/resources/static` en la que podremos crear nuestro index.html
 
 # 6 - Documentando la app
 
