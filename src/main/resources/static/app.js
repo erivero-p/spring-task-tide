@@ -428,17 +428,18 @@ function setupEventListeners() {
 
   // Create Task form submission
   elements.createTaskForm.addEventListener("submit", (e) => {
-    e.preventDefault()
+    e.preventDefault();
 	const taskData = getTaskDataToCreate();
-	if (!taskData) return;
+	  if (!taskData) return;
     handleCreateTask(taskData);
   })
 
   // Edit Task form submission
   elements.editTaskForm.addEventListener("submit", (e) => {
-    e.preventDefault()
-	const updatedTask = getTaskDataToUpdate();
-	if (!updatedTask()) return ;
+    e.preventDefault();
+    const taskId = Number.parseInt(document.getElementById("edit-task-id").value);
+	  const updatedTask = getTaskDataToUpdate(taskId);
+	if (!updatedTask) return ;
     handleUpdateTask(taskId, updatedTask);
   })
 
@@ -495,14 +496,12 @@ function getTaskDataToCreate() {
 	return newTask;
 }
 // gets edited task data form de DOM
-function getTaskDataToUpdate() {
-	const taskId = Number.parseInt(document.getElementById("edit-task-id").value);
+function getTaskDataToUpdate(taskId) {
     const title = document.getElementById("edit-title").value.trim();
+    if (!title || !taskId) return null;
     const description = document.getElementById("edit-description").value.trim();
     const status = document.getElementById("edit-status").value;
     const dueDate = document.getElementById("edit-due-date").value;
-
-    if (!title || !taskId) return null;
 
     const updatedTask = {
       title,
