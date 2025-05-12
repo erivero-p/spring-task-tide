@@ -1,5 +1,7 @@
 # spring-task-tide
 Esta app constituye una práctica con mi primer proyecto en Spring Boot. Es un gestor de tareas básico, con un sistema de drag-and-drop en el frontend para darle un pequeño giro.
+![Todo App](src/main/resources/asset-todo-app.gif)
+
 
 # ¿Cómo usar?
 
@@ -73,7 +75,7 @@ public interface TaskRepository extends JpaRepository<Task, Long> {
 }
 ```
 
-Extendemos de la interfaz de Spring JpaRepository, de forma que Spring implementará automáticamente todos los métodos básico (guardar, buscar, borrar). Los parámetros genéricos de la interfaz serán: el tipo de entidad que manejará el repositorio (Task en este caso) y el tipo de la clave primaria (id) de esa entidad. 
+Extendemos de la interfaz de Spring JpaRepository, de forma que Spring implementará automáticamente todos los métodos básicos (guardar, buscar, borrar). Los parámetros genéricos de la interfaz serán: el tipo de entidad que manejará el repositorio (Task en este caso) y el tipo de la clave primaria (id) de esa entidad. 
 
 Sin definir ningún método extra, ya tendremos implementados automáticamente:
 
