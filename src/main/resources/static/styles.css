@@ -162,19 +162,11 @@
 	transition: box-shadow 0.2s, transform 0.1s, height 0.3s ease;
   }
   
-  /* Add these new classes for different task card styles */
-  .task-card.date-view {
-	/* Date board tasks show all info by default */
-  }
   
   .task-card.date-view .task-description {
 	max-height: 200px;
 	opacity: 1;
 	margin-top: 8px;
-  }
-  
-  .task-card.status-view {
-	/* Status board tasks are compact by default */
   }
   
   .task-card.status-view .task-description,
@@ -264,11 +256,6 @@
 	color: var(--text-light);
 	word-break: break-word;
 	transition: max-height 0.3s ease, opacity 0.3s ease, margin-top 0.3s ease;
-  }
-  
-  /* Remove the hover styles from the general task-card class since we're now using specific view classes */
-  .task-card:hover .task-description {
-	/* Remove these styles as they're now in the specific view classes */
   }
   
   /* Modal Styles */
